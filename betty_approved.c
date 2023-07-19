@@ -14,7 +14,6 @@ int main(int ac, char **av)
 	if (ac < 2)
 	{
 		printf("Usage: %s string ...\n", av[0]);
-		return (1);
 	}
 	else
 	{
