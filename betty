@@ -1,0 +1,3 @@
+#!/bin/bash
+read file
+/home/assimine/Betty/betty-style.pl $file
