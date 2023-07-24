@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /*
  * check_existance - checks if command exists
  * @av: list of arguments to be passed during execution
@@ -46,26 +46,6 @@ void execute_commands(char **av, char *env[], size_t *buff)
 	free(user_input);
 	user_input = NULL;
 	*buff = 0;
-}
-
-/*
- * exit_bul - exits shell
- * @av: user input array to be freed
- *
- * RETURN: void
- */
-
-void exit_bul(char **av)
-{
-	if (av == NULL)
-		return;
-
-	if (_strcmp(av[0], "exit") == 0)
-	{
-		free_ptr(av);
-		free(user_input);
-		exit(EXIT_SUCCESS);
-	}
 }
 
 /*

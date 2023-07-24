@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /*
  * elements - counts elements of a pointer to pointer to char

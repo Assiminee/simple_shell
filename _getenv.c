@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /*
  * return_value - extracts the value of an environment variable

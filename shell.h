@@ -15,6 +15,12 @@
 extern char **environ;
 extern char *user_input;
 
+typedef struct
+{
+	char *func_name;
+	void (*f)(char **av);
+} builtins;
+
 void free_ptr(char **args);
 int num_elements(char *line);
 char **tokenize(char *line);
@@ -40,5 +46,7 @@ int print_to_console(char *string);
 void remove_space(void);
 void prompt(void);
 void fork_error(char **av, pid_t pid);
+void env_bul(char **av);
+void exe_builtins(char **av);
 
 #endif

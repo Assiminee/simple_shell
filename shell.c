@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /* TASK 3 */
 /* global variable that stores the input of the user */
 char *user_input = NULL;
@@ -35,7 +35,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 			continue;
 		}
 		av = fill_av(tokenize(user_input));
-		exit_bul(av);
+		exe_builtins(av);
 		if (check_existance(av, &buff) == -1)
 			continue;
 		pid = fork();

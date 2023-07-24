@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /*
  * free_ptr - frees a pointer to pointer to char
@@ -110,7 +110,7 @@ char **tokenize(char *line)
 void error_message(char *command, char *message)
 {
 	char *error_message = NULL;
-	
+
 	if (message == NULL ||
 	_strlen(message) == 0 ||
 	command == NULL ||
