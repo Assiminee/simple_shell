@@ -10,7 +10,7 @@ void prompt(void)
 {
 	if (isatty(STDIN_FILENO))
 	{
-		if (print_to_console("$ ") < 0)
+		if (print_to_console("#cisfun$ ") < 0)
 			exit(EXIT_FAILURE);
 	}
 }
