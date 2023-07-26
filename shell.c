@@ -9,13 +9,14 @@ char *user_input = NULL;
  */
 int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 {
-	size_t buff = 0;
+	size_t buff;
 	ssize_t characters;
 	pid_t pid;
 	char **av = NULL, *env[] = {NULL};
 
 	while (true)
 	{
+		buff = 0;
 		prompt();
 		characters = getline(&user_input, &buff, stdin);
 		if (characters == -1)
@@ -30,6 +31,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 		remove_space();
 		if (_strcmp(user_input, "\n") == 0)
 		{
+			free(user_input);
 			user_input = NULL;
 			buff = 0;
 			continue;
@@ -50,6 +52,9 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 		}
 		else
 			wait(NULL);
+		free_ptr(av);
+		free(user_input);
+		user_input = NULL;
 	}
 	return (0);
 }

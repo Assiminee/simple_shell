@@ -24,6 +24,7 @@ void fork_error(char **av, pid_t pid)
 		perror("fork");
 		free_ptr(av);
 		free(user_input);
+		user_input = NULL;
 		exit(EXIT_FAILURE);
 	}
 }

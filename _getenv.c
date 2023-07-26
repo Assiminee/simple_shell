@@ -9,8 +9,7 @@
 
 char *return_value(const char *entry)
 {
-	char *value;
-	char *ptr;
+	char *value, *ptr, *portion;
 
 	if (entry == NULL)
 		return (NULL);
@@ -20,24 +19,19 @@ char *return_value(const char *entry)
 		perror("_strdup");
 		return (NULL);
 	}
-	while (*ptr != '\0')
+	portion = strtok(ptr, "=");
+	portion = strtok(NULL, "=");
+	value = malloc(_strlen(portion) + 1);
+	if (value == NULL)
 	{
-		if (*ptr == '=')
-		{
-			ptr++;
-			value = malloc(_strlen(ptr) + 1);
-			if (value == NULL)
-			{
-				perror("malloc");
-				return (NULL);
-			}
-			value[0] = '\0';
-			_strcpy(value, ptr);
-			return (value);
-		}
-		ptr++;
+		perror("malloc");
+		free(ptr);
+		return (NULL);
 	}
-	return (NULL);
+	value[0] = '\0';
+	_strcpy(value, portion);
+	free(ptr);
+	return (value);
 }
 
 /*
