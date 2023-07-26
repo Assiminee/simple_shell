@@ -20,22 +20,7 @@ int check_existance(char **av, char **user_input)
 		*user_input = NULL;
 		return (-1);
 	}
-
-	if (!is_path(av[0]))
-	{
-		av[0] = realloc(av[0], _strlen(abs_path) + 1);
-		if (av[0] == NULL)
-		{
-			perror("malloc");
-			free_ptr(av);
-			free(*user_input);
-			free(abs_path);
-			*user_input = NULL;
-			return (-1);
-		}
-		_strcpy(av[0], abs_path);
-	}
-	free(abs_path);
+	av[0] = abs_path;
 	return (0);
 }
 
@@ -48,16 +33,13 @@ int check_existance(char **av, char **user_input)
  * Return: void
  */
 
-void execute_commands(char **av, char *env[], char **user_input)
+void execute_commands(char **av, char *env[], __attribute__((unused))char **user_input)
 {
 	int exe;
 
 	exe = execve(av[0], av, env);
 	if (exe == -1)
 		perror("./shell");
-	free_ptr(av);
-	free(*user_input);
-	*user_input = NULL;
 }
 
 /**
