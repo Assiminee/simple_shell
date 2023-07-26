@@ -4,8 +4,10 @@
 char *user_input = NULL;
 /**
  * main - mock shell
+ * @ac: number of arguments
+ * @argv: pointer to pointer to cha
  *
- * return: 0 if succeeds, 1 if fails
+ * Return: 0 if succeeds, 1 if fails
  */
 int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 {

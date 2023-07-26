@@ -1,10 +1,10 @@
 #include "shell.h"
 
-/*
+/**
  * exit_bul - exits shell
  * @av: user input array to be freed
  *
- * RETURN: void
+ * Return: void
  */
 
 void exit_bul(char **av)

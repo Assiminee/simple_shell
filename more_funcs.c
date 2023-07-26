@@ -1,9 +1,9 @@
 #include "shell.h"
 
-/*
+/**
  * prompt - displays the shell symbol on the console
  *
- * RETURN: void
+ * Return: void
  */
 
 void prompt(void)
@@ -14,6 +14,13 @@ void prompt(void)
 			exit(EXIT_FAILURE);
 	}
 }
+/**
+ * fork_error - deals with a fork error
+ * @av: pointer to pointer to char
+ * @pid: pid_t
+ *
+ * Return: void
+ */
 
 void fork_error(char **av, pid_t pid)
 {

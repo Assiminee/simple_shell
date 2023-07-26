@@ -1,10 +1,10 @@
 #include "shell.h"
 
-/*
+/**
  * return_value - extracts the value of an environment variable
  * @entry: line containing the key value pair of an env var
  *
- * RETURN: the value of an env var
+ * Return: the value of an env var
  */
 
 char *return_value(const char *entry)
@@ -34,11 +34,11 @@ char *return_value(const char *entry)
 	return (value);
 }
 
-/*
+/**
  * _getenv - gets the value of an environment variable
  * @name: the name of an environment variable
  *
- * RETURN: the value of an environment variable
+ * Return: the value of an environment variable
  */
 
 char *_getenv(const char *name)

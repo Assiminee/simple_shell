@@ -1,10 +1,10 @@
 #include "shell.h"
 
-/*
+/**
  * free_ptr - frees a pointer to pointer to char
  * @args: pointer to pointer to char to be freed
  *
- * RETURN: void
+ * Return: void
  */
 
 void free_ptr(char **args)
@@ -18,11 +18,11 @@ void free_ptr(char **args)
 	free(args);
 }
 
-/*
+/**
  * num_elements - counts words in string
  * @line: char pointer
  *
- * RETURN: number of words
+ * Return: number of words
  */
 
 int num_elements(char *line)
@@ -49,11 +49,11 @@ int num_elements(char *line)
 	return (count);
 }
 
-/*
+/**
  * tokenize - splits elements of a string into pointer to pointer to char
  * @line: string to be split
  *
- * RETURN: pointer to pointer to char
+ * Return: pointer to pointer to char
  */
 
 char **tokenize(char *line)
@@ -99,12 +99,12 @@ char **tokenize(char *line)
 	return (args);
 }
 
-/*
+/**
  * error_message - prints error message to console
  * @command: command called by the user
  * @message: message to be printed
  *
- * RETURN: void
+ * Return: void
  */
 
 void error_message(char *command, char *message)

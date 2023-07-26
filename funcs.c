@@ -1,11 +1,11 @@
 #include "shell.h"
-/*
+
+/**
  * check_existance - checks if command exists
  * @av: list of arguments to be passed during execution
- * @env: environment variables
  * @buff: size of the buffer lineptr
  *
- * RETURN: void
+ * Return: void
  */
 
 int check_existance(char **av, size_t *buff)
@@ -26,13 +26,13 @@ int check_existance(char **av, size_t *buff)
 	return (0);
 }
 
-/*
+/**
  * execute_commands - executes user commands
  * @av: list of arguments to be passed during execution
  * @env: environment variables
  * @buff: size of the buffer lineptr
  *
- * RETURN: void
+ * Return: void
  */
 
 void execute_commands(char **av, char *env[], size_t *buff)
@@ -48,11 +48,11 @@ void execute_commands(char **av, char *env[], size_t *buff)
 	*buff = 0;
 }
 
-/*
+/**
  * print_to_console - prints to the console
  * @string: text to print to the console
  *
- * RETURN: 0 if success, -1 if failure
+ * Return: 0 if success, -1 if failure
  */
 
 int print_to_console(char *string)
@@ -68,10 +68,10 @@ int print_to_console(char *string)
 	return (0);
 }
 
-/*
+/**
  * remove_space - removes leading spaces
  *
- * RETURN: void
+ * Return: void
  */
 
 void remove_space(void)

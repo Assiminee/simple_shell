@@ -1,10 +1,10 @@
 #include "shell.h"
 
-/*
+/**
  * elements - counts elements of a pointer to pointer to char
  * @tokenized: pointer to pointer to char
  *
- * RETURN: number of elements
+ * Return: number of elements
  */
 
 int elements(char **tokenized)
@@ -18,11 +18,11 @@ int elements(char **tokenized)
 	return (i);
 }
 
-/*
+/**
  * fill_av - fills the array of arguments
  * @tokenized: pointer to pointer to char
  *
- * RETURN: pointer to pointer to char
+ * Return: pointer to pointer to char
  */
 
 char **fill_av(char **tokenized)
@@ -61,11 +61,11 @@ char **fill_av(char **tokenized)
 	return (av);
 }
 
-/*
+/**
  * is_path - checks if user input is a path
  * @string: string to check
  *
- * RETURN: 0 or 1
+ * Return: 0 or 1
  */
 
 int is_path(char *string)
@@ -84,11 +84,11 @@ int is_path(char *string)
 	return (0);
 }
 
-/*
+/**
  * find_path_to_file - finds path to file
  * @fileName: user input
  *
- * RETURN: full path of file
+ * Return: full path of file
  */
 char *find_path_to_file(char *fileName)
 {
