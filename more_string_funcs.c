@@ -34,7 +34,7 @@ int _strcmp(const char *s1, const char *s2)
 
 char *_strtok(char *str, const char *delim)
 {
-	static char *token = NULL;
+	static char *token;
 	char *newstr;
 	int delimCheck;
 
