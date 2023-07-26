@@ -1,7 +1,6 @@
 #include "shell.h"
 /* TASK 3 */
 /* global variable that stores the input of the user */
-char *user_input = NULL;
 /**
  * main - mock shell
  * @ac: number of arguments
@@ -14,7 +13,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 	size_t buff;
 	ssize_t characters;
 	pid_t pid;
-	char **av = NULL, *env[] = {NULL};
+	char **av, *env[] = {NULL}, *user_input = NULL;
 
 	while (true)
 	{
@@ -30,31 +29,32 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 			continue;
 		}
 		user_input[characters - 1] = '\0';
-		remove_space();
+		if (user_input[0] == ' ')
+			remove_space(&user_input);
 		if (_strcmp(user_input, "\n") == 0)
 		{
 			free(user_input);
 			user_input = NULL;
-			buff = 0;
 			continue;
 		}
-		av = fill_av(tokenize(user_input));
-		if (av == NULL)
+		if (tokenize(&av, &user_input) == -1)
 			continue;
-		if (exe_builtins(av) == 0)
+		if (exe_builtins(av, &user_input) == 0)
 			continue;
-		if (check_existance(av, &buff) == -1)
+		if (check_existance(av, &user_input) == -1)
 			continue;
 		pid = fork();
-		fork_error(av, pid);
+		fork_error(av, &user_input, pid);
 		if (pid == 0)
 		{
-			execute_commands(av, env, &buff);
+			execute_commands(av, env, &user_input);
 			exit(EXIT_SUCCESS);
 		}
 		else
 			wait(NULL);
 		free_ptr(av);
+		free(user_input);
+		user_input = NULL;
 	}
 	return (0);
 }

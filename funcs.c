@@ -8,19 +8,34 @@
  * Return: void
  */
 
-int check_existance(char **av, size_t *buff)
+int check_existance(char **av, char **user_input)
 {
-	char *abs_path;
+	char *abs_path = find_path_to_file(av[0]);
 
-	abs_path = find_path_to_file(av[0]);
 	if (abs_path == NULL)
 	{
 		error_message(av[0], "command not found\n");
 		free_ptr(av);
-		*buff = 0;
+		free(*user_input);
+		*user_input = NULL;
 		return (-1);
 	}
-	av[0] = abs_path;
+
+	if (!is_path(av[0]))
+	{
+		av[0] = realloc(av[0], _strlen(abs_path) + 1);
+		if (av[0] == NULL)
+		{
+			perror("malloc");
+			free_ptr(av);
+			free(*user_input);
+			free(abs_path);
+			*user_input = NULL;
+			return (-1);
+		}
+		_strcpy(av[0], abs_path);
+	}
+	free(abs_path);
 	return (0);
 }
 
@@ -33,7 +48,7 @@ int check_existance(char **av, size_t *buff)
  * Return: void
  */
 
-void execute_commands(char **av, char *env[], size_t *buff)
+void execute_commands(char **av, char *env[], char **user_input)
 {
 	int exe;
 
@@ -41,9 +56,8 @@ void execute_commands(char **av, char *env[], size_t *buff)
 	if (exe == -1)
 		perror("./shell");
 	free_ptr(av);
-	free(user_input);
-	user_input = NULL;
-	*buff = 0;
+	free(*user_input);
+	*user_input = NULL;
 }
 
 /**
@@ -72,11 +86,14 @@ int print_to_console(char *string)
  * Return: void
  */
 
-void remove_space(void)
+void remove_space(char **user_input)
 {
+	char *temp;
+
 	if (user_input == NULL)
 		return;
-
-	while (*user_input == ' ')
-		user_input++;
+	temp = *user_input;
+	while (*temp == ' ')
+		temp++;
+	_strcpy(*user_input, temp);
 }

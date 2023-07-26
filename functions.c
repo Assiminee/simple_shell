@@ -19,46 +19,6 @@ int elements(char **tokenized)
 }
 
 /**
- * fill_av - fills the array of arguments
- * @tokenized: pointer to pointer to char
- *
- * Return: pointer to pointer to char
- */
-
-char **fill_av(char **tokenized)
-{
-	int i;
-	char **av = NULL;
-
-	if (tokenized == NULL)
-		return (NULL);
-	av = malloc((elements(tokenized) + 1) * sizeof(char *));
-	if (av == NULL)
-	{
-		perror("malloc");
-		free_ptr(tokenized);
-		free(user_input);
-		user_input = NULL;
-		return (NULL);
-	}
-	for (i = 0; tokenized[i] != NULL; i++)
-	{
-		av[i] = malloc(_strlen(tokenized[i]) + 1);
-		if (av[i] == NULL)
-		{
-			free_ptr(av);
-			free_ptr(tokenized);
-			perror("malloc");
-			return (NULL);
-		}
-		_strcpy(av[i], tokenized[i]);
-	}
-	av[i] = NULL;
-	free_ptr(tokenized);
-	return (av);
-}
-
-/**
  * is_path - checks if user input is a path
  * @string: string to check
  *

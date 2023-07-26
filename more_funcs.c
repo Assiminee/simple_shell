@@ -22,16 +22,16 @@ void prompt(void)
  * Return: void
  */
 
-void fork_error(char **av, pid_t pid)
+void fork_error(char **av, char **user_input, pid_t pid)
 {
-	if (av == NULL)
+	if (av == NULL || user_input == NULL)
 		exit(EXIT_FAILURE);
 	if (pid == -1)
 	{
 		perror("fork");
 		free_ptr(av);
-		free(user_input);
-		user_input = NULL;
+		free(*user_input);
+		*user_input = NULL;
 		exit(EXIT_FAILURE);
 	}
 }
