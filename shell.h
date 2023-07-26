@@ -11,6 +11,7 @@
 #include <sys/stat.h>
 #include <ctype.h>
 #include <string.h>
+#include <stddef.h>
 
 extern char **environ;
 extern char *user_input;
@@ -35,6 +36,8 @@ size_t _strlen(const char *string);
 char *_strcpy(char *dest, const char *src);
 char *_strdup(const char *string);
 char *_strcat(char *dest, const char *src);
+char *_strchr(char *p, const char ch);
+char *_strtok(char *str, const char* delim);
 int _strncmp(const char *s1, const char *s2, size_t n);
 void execute_commands(char **av, char *env[], size_t *buff);
 int check_existance(char **av, size_t *buff);
