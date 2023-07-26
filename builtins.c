@@ -29,9 +29,12 @@ void env_bul(__attribute__((unused)) char **av)
 		if (print_to_console(environ[i]) < 0 || print_to_console("\n") < 0)
 			exit(EXIT_FAILURE);
 	}
+	free_ptr(av);
+	free(user_input);
+	user_input = NULL;
 }
 
-void exe_builtins(char **av)
+int exe_builtins(char **av)
 {
 	int k;
 	builtins bi[] = {
@@ -41,10 +44,14 @@ void exe_builtins(char **av)
 	};
 
 	if (av == NULL)
-		return;
+		return (-1);
 	for (k = 0; bi[k].func_name; k++)
 	{
 		if (_strcmp(av[0], bi[k].func_name) == 0)
+		{
 			bi[k].f(av);
+			return (0);
+		}
 	}
+	return (-1);
 }

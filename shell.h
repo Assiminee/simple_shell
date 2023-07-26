@@ -47,6 +47,6 @@ void remove_space(void);
 void prompt(void);
 void fork_error(char **av, pid_t pid);
 void env_bul(char **av);
-void exe_builtins(char **av);
+int exe_builtins(char **av);
 
 #endif

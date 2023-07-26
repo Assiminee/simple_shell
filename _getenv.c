@@ -15,11 +15,6 @@ char *return_value(const char *entry)
 	if (entry == NULL)
 		return (NULL);
 	ptr = _strdup(entry);
-	if (ptr == NULL)
-	{
-		perror("_strdup");
-		return (NULL);
-	}
 	while (*ptr != '\0')
 	{
 		if (*ptr == '=')
