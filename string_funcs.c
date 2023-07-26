@@ -1,10 +1,10 @@
 #include "shell.h"
 
-/*
+/**
  * _strlen - counts elements of a string
  * @string: string to count elements of
  *
- * RETURN: number of elements
+ * Return: number of elements
  */
 
 size_t _strlen(const char *string)
@@ -18,12 +18,12 @@ size_t _strlen(const char *string)
 	return (i);
 }
 
-/*
+/**
  * _strcpy - copies src into dest
  * @dest: destination string
  * @src: string to be copied
  *
- * RETURN: pointer to the destination string
+ * Return: pointer to the destination string
  */
 
 char *_strcpy(char *dest, const char *src)
@@ -38,11 +38,11 @@ char *_strcpy(char *dest, const char *src)
 	return (dest);
 }
 
-/*
+/**
  * _strdup - makes a duplicate of a string
  * @string: string to duplicate
  *
- * RETURN: pointer to the duplicated string
+ * Return: pointer to the duplicated string
  */
 
 char *_strdup(const char *string)
@@ -61,12 +61,12 @@ char *_strdup(const char *string)
 	return (duplicate);
 }
 
-/*
+/**
  * _strcat - concatenates dest and src in dest
  * @dest: destination string
  * @src: string to be concatenated with dest
  *
- * RETURN: pointer to the destination string
+ * Return: pointer to the destination string
  */
 
 char *_strcat(char *dest, const char *src)
@@ -84,13 +84,13 @@ char *_strcat(char *dest, const char *src)
 	return (dest);
 }
 
-/*
+/**
  * _strncmp - compares s1 and s2 up to n bytes
  * @s1: string to be compared
  * @s2: string to compare s1 to
  * @n: number of bytes to be compared
  *
- * RETURN: int
+ * Return: int
  */
 
 int _strncmp(const char *s1, const char *s2, size_t n)
@@ -108,14 +108,14 @@ int _strncmp(const char *s1, const char *s2, size_t n)
 }
 
 /**
- * _strtok: tokenze
+ * _strtok - tokenze
  * @str: pointer to char
  * @delim: const pointer to char
  *
  * Return: pointer to char
  */
 
-char *_strtok(char *str, const char* delim)
+char *_strtok(char *str, const char *delim)
 {
 	static char *token = NULL;
 	char *newstr;
@@ -126,7 +126,7 @@ char *_strtok(char *str, const char* delim)
 		str = token;
 	while (*str)
 	{
-		if (_strchr((char*)delim, *str) == NULL)
+		if (_strchr((char *)delim, *str) == NULL)
 		{
 			if (delimCheck)
 			{
@@ -154,7 +154,7 @@ char *_strtok(char *str, const char* delim)
 }
 
 /**
- * _strchr: search the first occurence of a char
+ * _strchr - search the first occurence of a char
  * @s: pointer to char
  * @c: pointer to char
  *
