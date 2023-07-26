@@ -17,8 +17,6 @@ int check_existance(char **av, size_t *buff)
 	{
 		error_message(av[0], "command not found\n");
 		free_ptr(av);
-		free(user_input);
-		user_input = NULL;
 		*buff = 0;
 		return (-1);
 	}

@@ -48,7 +48,6 @@ char **fill_av(char **tokenized)
 		{
 			free_ptr(av);
 			free_ptr(tokenized);
-			free(user_input);
 			perror("malloc");
 			return (NULL);
 		}
