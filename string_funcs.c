@@ -106,3 +106,70 @@ int _strncmp(const char *s1, const char *s2, size_t n)
 		return (0);
 	return (s1[i] - s2[i]);
 }
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stddef.h>
+
+
+char *_strtok(char *str, const char* delim)
+{
+	static char *token = NULL;
+	char *newstr;
+	int delimCheck;
+
+	delimCheck = 1;
+	if (str == NULL)
+		str = token;
+	while (*str)
+	{
+		if (_strchr((char*)delim, *str) == NULL)
+		{
+			if (delimCheck)
+			{
+				delimCheck = 0;
+				newstr = str;
+			}
+		}
+		else
+		{
+			if (!delimCheck)
+			{
+				*str = '\0';
+				token = str + 1;
+				return (newstr);
+			}
+		}
+		str++;
+	}
+	if (!delimCheck)
+	{
+		token = str;
+		return (newstr);
+	}
+	return (NULL);
+}
+
+/**
+ * _strchr: search the first occurence of a char
+ * @s: pointer to char
+ * @c: pointer to char
+ *
+ * Return: pointer to char
+ */
+
+char *_strchr(char *s, char c)
+{
+	while (*s)
+	{
+		if (*s == c)
+		{
+			return (s);
+		}
+		s++;
+	}
+	if (c == '\0')
+		return ((char *)s);
+	return (NULL);
+}
