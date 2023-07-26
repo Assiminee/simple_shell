@@ -56,8 +56,6 @@ char **fill_av(char **tokenized)
 	}
 	av[i] = NULL;
 	free_ptr(tokenized);
-	free(user_input);
-	user_input = NULL;
 	return (av);
 }
 

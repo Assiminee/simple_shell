@@ -55,8 +55,6 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 		else
 			wait(NULL);
 		free_ptr(av);
-		free(user_input);
-		user_input = NULL;
 	}
 	return (0);
 }
