@@ -53,6 +53,7 @@ char **fill_av(char **tokenized)
 		_strcpy(av[i], tokenized[i]);
 	}
 	av[i] = NULL;
+	free_ptr(tokenized);
 	return (av);
 }
 

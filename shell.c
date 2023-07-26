@@ -35,7 +35,10 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 			continue;
 		}
 		av = fill_av(tokenize(user_input));
-		exe_builtins(av);
+		if (av == NULL)
+			continue;
+		if (exe_builtins(av) == 0)
+			continue;
 		if (check_existance(av, &buff) == -1)
 			continue;
 		pid = fork();
