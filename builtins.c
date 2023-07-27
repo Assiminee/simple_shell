@@ -3,6 +3,7 @@
 /**
  * exit_bul - exits shell
  * @av: user input array to be freed
+ * @user_input: pointer to pointer to char
  *
  * Return: void
  */
@@ -16,6 +17,14 @@ void exit_bul(char **av, char **user_input)
 	free(*user_input);
 	exit(EXIT_SUCCESS);
 }
+
+/**
+ * env_bul - ...
+ * @av: pointer to pointer to char
+ * @user_input: pointer to pointer to char
+ *
+ * Return: void
+ */
 
 void env_bul(__attribute__((unused)) char **av, char **user_input)
 {
@@ -33,6 +42,14 @@ void env_bul(__attribute__((unused)) char **av, char **user_input)
 	free(*user_input);
 	*user_input = NULL;
 }
+
+/**
+ * exe_vuiltins - ...
+ * @av: pointer to pointer to char
+ * @user_input: pointer to pointer to char
+ *
+ * Return: int
+ */
 
 int exe_builtins(char **av, char **user_input)
 {

@@ -64,6 +64,7 @@ int print_to_console(char *string)
 
 /**
  * remove_space - removes leading spaces
+ * @user_input: pointer to pointer to char
  *
  * Return: void
  */
