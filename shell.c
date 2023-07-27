@@ -23,7 +23,10 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 		if (characters == -1)
 		{
 			if (characters == EOF)
+			{
+				free(user_input);
 				break;
+			}
 			if (isatty(STDIN_FILENO))
 				perror("./shell");
 			continue;
