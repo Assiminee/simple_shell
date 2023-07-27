@@ -18,7 +18,7 @@ void prompt(void)
  * fork_error - deals with a fork error
  * @av: pointer to pointer to char
  * @pid: pid_t
- * user_input: pointer to pointer to char
+ * @user_input: pointer to pointer to char
  *
  * Return: void
  */

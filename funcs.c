@@ -3,7 +3,7 @@
 /**
  * check_existance - checks if command exists
  * @av: list of arguments to be passed during execution
- * @buff: size of the buffer lineptr
+ * @user_input: pointer to pointer to char
  *
  * Return: void
  */
@@ -28,7 +28,7 @@ int check_existance(char **av, char **user_input)
  * execute_commands - executes user commands
  * @av: list of arguments to be passed during execution
  * @env: environment variables
- * @buff: size of the buffer lineptr
+ * @user_input: pointer to pointer to char
  *
  * Return: void
  */

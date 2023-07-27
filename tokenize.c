@@ -52,6 +52,7 @@ int num_elements(char *line)
 /**
  * tokenize - splits elements of a string into pointer to pointer to char
  * @line: string to be split
+ * @args: pointer
  *
  * Return: pointer to pointer to char
  */
