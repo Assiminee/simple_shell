@@ -23,7 +23,7 @@ extern char *user_input;
 typedef struct builtins
 {
 	char *func_name;
-	void (*f)(char **av);
+	void (*f)(char **av, int status);
 } builtins;
 
 void free_ptr(char **args);
@@ -46,16 +46,16 @@ void execute_commands(char **av, char *env[]);
 int check_existance(char **av);
 char *extract_command(char *path);
 int contains_char(char *string, char character);
-void exit_bul(char **av);
+void exit_bul(char **av, int status);
 int _strcmp(const char *s1, const char *s2);
 int print_to_console(char *string);
 void remove_space();
 void prompt(void);
 void fork_error(char **av, pid_t pid);
-void env_bul(char **av);
-int exe_builtins(char **av);
+void env_bul(char **av, int status);
+int exe_builtins(char **av, int status);
 int check_for_space();
-int pre_execution(char ***av);
+int pre_execution(char ***av, int status);
 void handleCtrlC(int signal);
 
 #endif

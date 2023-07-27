@@ -14,6 +14,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 	ssize_t characters;
 	pid_t pid;
 	char **av, *env[] = {NULL};
+	int status = 0;
 
 	signal(SIGINT, handleCtrlC);
 	while (true)
@@ -33,7 +34,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 			continue;
 		}
 		user_input[characters - 1] = '\0';
-		if (pre_execution(&av) == -1)
+		if (pre_execution(&av, status) == -1)
 			continue;
 		pid = fork();
 		fork_error(av, pid);
@@ -43,7 +44,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 			exit(EXIT_SUCCESS);
 		}
 		else
-			wait(NULL);
+			wait(&status);
 		free_ptr(av);
 		free(user_input);
 		user_input = NULL;
