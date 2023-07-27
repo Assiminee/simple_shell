@@ -8,34 +8,53 @@
  * Return: void
  */
 
-void exit_bul(char **av, int status)
+void exit_bul(char **av, int status, char *shell_name)
 {
 	int stat;
+	char *error_msg;
 	if (av == NULL || user_input == NULL)
 		return;
-	stat = exit_status(av[1]);
+	if (av[1] != NULL)
+	{
+		stat = exit_status(av[1]);
+		if (stat == -1)
+		{
+			error_msg = malloc(_strlen(shell_name) + _strlen(av[1]) + 29);
+			_strcpy(error_msg, shell_name);
+			_strcat(error_msg, ": 1: exit: Illegal number: ");
+			_strcat(error_msg, av[1]);
+			_strcat(error_msg, "\n");
+			write(2, error_msg, _strlen(error_msg));
+			free(error_msg);
+			free_ptr(av);
+			free(user_input);
+			exit(2);
+		}
+		else
+		{
+			free_ptr(av);
+			free(user_input);
+			exit(stat);
+		}
+	}
 	free_ptr(av);
 	free(user_input);
-	if (stat != -1)
-		exit(stat);
-	else
-	{
-		if (status != 0)
-			exit(2);
-		exit(EXIT_SUCCESS);
-	}
+	if (status != 0)
+		exit(2);
+	exit(EXIT_SUCCESS);
 }
 
 /**
  * env_bul - prints environment to the console
- * @av: pointer to pointer to char
+  @av: pointer to pointer to char
  * @user_input: pointer to pointer to char
  *
  * Return: void
  */
 
 void env_bul(__attribute__((unused)) char **av,
-		__attribute__((unused)) int status)
+		__attribute__((unused)) int status,
+		__attribute__((unused)) char *shell_name)
 {
 	int i;
 
@@ -60,7 +79,7 @@ void env_bul(__attribute__((unused)) char **av,
  * Return: int
  */
 
-int exe_builtins(char **av, int status)
+int exe_builtins(char **av, int status, char *shell_name)
 {
 	int k;
 	builtins bi[] = {
@@ -75,7 +94,7 @@ int exe_builtins(char **av, int status)
 	{
 		if (_strcmp(av[0], bi[k].func_name) == 0)
 		{
-			bi[k].f(av, status);
+			bi[k].f(av, status, shell_name);
 			return (0);
 		}
 	}

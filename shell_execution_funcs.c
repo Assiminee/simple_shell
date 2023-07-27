@@ -8,7 +8,7 @@
  * Return: 0 or -1
  */
 
-int pre_execution(char ***av, int status)
+int pre_execution(char ***av, int status, char *shell_name)
 {
 	if (av == NULL || user_input == NULL)
 		return (-1);
@@ -19,7 +19,7 @@ int pre_execution(char ***av, int status)
 	if (tokenize(av) == -1)
 		return (-1);
 
-	if (exe_builtins(*av, status) == 0)
+	if (exe_builtins(*av, status, shell_name) == 0)
 		return (-1);
 
 	if (check_existance(*av) == -1)

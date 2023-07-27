@@ -8,12 +8,12 @@ char *user_input = NULL;
  * Return: 0 if succeeds, 1 if fails
  */
 
-int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
+int main(__attribute__((unused))int ac, char **argv)
 {
 	size_t buff;
 	ssize_t characters;
 	pid_t pid;
-	char **av, *env[] = {NULL};
+	char **av, *env[] = {NULL}, *shell_name = argv[0];
 	int status = 0;
 
 	signal(SIGINT, handleCtrlC);
@@ -34,7 +34,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 			continue;
 		}
 		user_input[characters - 1] = '\0';
-		if (pre_execution(&av, status) == -1)
+		if (pre_execution(&av, status, shell_name) == -1)
 			continue;
 		pid = fork();
 		fork_error(av, pid);
