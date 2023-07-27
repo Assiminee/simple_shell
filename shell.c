@@ -1,13 +1,13 @@
 #include "shell.h"
-/* TASK 3 */
-/* global variable that stores the input of the user */
+
 /**
- * main - mock shell
+ * main - executes user commands from terminal
  * @ac: number of arguments
  * @argv: pointer to pointer to cha
  *
  * Return: 0 if succeeds, 1 if fails
  */
+
 int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 {
 	size_t buff;
@@ -50,6 +50,14 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 	return (0);
 }
 
+/**
+ * pre_execution - steps before executing a command
+ * &av: tokenized user input
+ * &user_input: input of the user
+ *
+ * Return: 0 or -1
+ */
+
 int pre_execution(char ***av, char **user_input)
 {
 	if (av == NULL || user_input == NULL)
@@ -69,6 +77,14 @@ int pre_execution(char ***av, char **user_input)
 
 	return (0);
 }
+
+/**
+ * check_for_space - checks for leading spaces in user input
+ * &user_input: input from the user
+ *
+ * Return: 0 or -1
+ */
+
 int check_for_space(char **user_input)
 {
 	if ((*user_input)[0] == ' ')

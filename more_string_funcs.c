@@ -25,7 +25,7 @@ int _strcmp(const char *s1, const char *s2)
 }
 
 /**
- * _strtok - tokenze
+ * _strtok - tokenizes a string using a delimiter
  * @str: pointer to char
  * @delim: const pointer to char
  *

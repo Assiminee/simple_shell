@@ -19,7 +19,7 @@ void exit_bul(char **av, char **user_input)
 }
 
 /**
- * env_bul - ...
+ * env_bul - prints environment to the console
  * @av: pointer to pointer to char
  * @user_input: pointer to pointer to char
  *
@@ -44,7 +44,7 @@ void env_bul(__attribute__((unused)) char **av, char **user_input)
 }
 
 /**
- * exe_builtins - ...
+ * exe_builtins - executes builtins
  * @av: pointer to pointer to char
  * @user_input: pointer to pointer to char
  *
