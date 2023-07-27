@@ -61,7 +61,7 @@ int tokenize(char ***args, char **line)
 {
 	char *line_cpy;
 	char *portion;
-	int i = 0;
+	int i = 0, len;
 
 	if (*line == NULL || args == NULL)
 		return (-1);
@@ -83,7 +83,11 @@ int tokenize(char ***args, char **line)
 	portion = _strtok(line_cpy, " \t\n");
 	while (portion != NULL)
 	{
-		(*args)[i] = malloc(_strlen(portion) + 1);
+		if (i == 0)
+			len = 1024;
+		else
+			len = _strlen(portion) + 1;
+		(*args)[i] = malloc(len + 1);
 		if ((*args)[i] == NULL)
 		{
 			perror("malloc");

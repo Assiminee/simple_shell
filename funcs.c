@@ -20,7 +20,13 @@ int check_existance(char **av, char **user_input)
 		*user_input = NULL;
 		return (-1);
 	}
-	av[0] = abs_path;
+	if (_strcmp(av[0], abs_path) == 0)
+		av[0] = abs_path;
+	else
+	{
+		_strcpy(av[0], abs_path);
+		free(abs_path);
+	}
 	return (0);
 }
 
