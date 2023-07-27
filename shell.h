@@ -57,5 +57,9 @@ int exe_builtins(char **av, int status);
 int check_for_space(void);
 int pre_execution(char ***av, int status);
 void handleCtrlC(int signal);
+int _atoi(char *s);
+int valid_exit_arg(char *arg);
+int exit_status(char *arg);
+
 
 #endif

@@ -60,3 +60,35 @@ void handleCtrlC(int signal)
 	free(user_input);
 	exit(signal);
 }
+
+/**
+ * valid_exit_arg - checks if exit argument is valid
+ * @arg: string holding exit status
+ *
+ * Return: 0 if valid, -1 if not
+ */
+
+int valid_exit_arg(char *arg)
+{
+	int i;
+
+	if (arg == NULL)
+		return (-1);
+
+	for (i = 0; arg[i] != '\0'; i++)
+	{
+		if (!(arg[i] >= '0' && arg[i] <= '9'))
+			return (-1);
+	}
+	return (0);
+}
+
+int exit_status(char *arg)
+{
+	if (arg == NULL)
+		return (-1);
+
+	if (valid_exit_arg(arg) == 0)
+		return (_atoi(arg));
+	return (-1);
+}

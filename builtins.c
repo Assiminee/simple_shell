@@ -10,13 +10,20 @@
 
 void exit_bul(char **av, int status)
 {
+	int stat;
 	if (av == NULL || user_input == NULL)
 		return;
+	stat = exit_status(av[1]);
 	free_ptr(av);
 	free(user_input);
-	if (status != 0)
-		exit(2);
-	exit(EXIT_SUCCESS);
+	if (stat != -1)
+		exit(stat);
+	else
+	{
+		if (status != 0)
+			exit(2);
+		exit(EXIT_SUCCESS);
+	}
 }
 
 /**

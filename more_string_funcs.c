@@ -92,3 +92,40 @@ char *_strchr(char *s, char c)
 		return ((char *)s);
 	return (NULL);
 }
+
+/**
+ * _atoi - converts a string to an integer.
+ * @s: pointer to char
+ *
+ * Return: int
+ */
+
+int _atoi(char *s)
+{
+	unsigned int num = 0;
+	int sign = 1;
+	int i = 0;
+
+	if (s == NULL)
+		return (-1);
+
+	while (s[i] != '\0')
+	{
+		if (s[i] == '-')
+			sign *= -1;
+		if ((s[i] >= '0') && (s[i] <= '9'))
+		{
+			num *= 10;
+			num += (s[i] - '0');
+		}
+		else
+		{
+			if (num)
+				break;
+		}
+		i++;
+	}
+	num *= sign;
+	return (num);
+}
+
