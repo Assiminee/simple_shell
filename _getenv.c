@@ -19,8 +19,8 @@ char *return_value(const char *entry)
 		perror("_strdup");
 		return (NULL);
 	}
-	portion = strtok(ptr, "=");
-	portion = strtok(NULL, "=");
+	portion = _strtok(ptr, "=");
+	portion = _strtok(NULL, "=");
 	value = malloc(_strlen(portion) + 1);
 	if (value == NULL)
 	{

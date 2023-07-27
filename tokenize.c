@@ -39,11 +39,11 @@ int num_elements(char *line)
 		perror("strdup");
 		return (0);
 	}
-	portion = strtok(line_cpy, " \t\n");
+	portion = _strtok(line_cpy, " \t\n");
 	while (portion != NULL)
 	{
 		count++;
-		portion = strtok(NULL, " \t\n");
+		portion = _strtok(NULL, " \t\n");
 	}
 	free(line_cpy);
 	return (count);
@@ -80,7 +80,7 @@ int tokenize(char ***args, char **line)
 		free(*line);
 		return (-1);
 	}
-	portion = strtok(line_cpy, " \t\n");
+	portion = _strtok(line_cpy, " \t\n");
 	while (portion != NULL)
 	{
 		(*args)[i] = malloc(_strlen(portion) + 1);
@@ -93,7 +93,7 @@ int tokenize(char ***args, char **line)
 			return (-1);
 		}
 		_strcpy((*args)[i], portion);
-		portion = strtok(NULL, " \t\n");
+		portion = _strtok(NULL, " \t\n");
 		i++;
 	}
 	(*args)[i] = NULL;

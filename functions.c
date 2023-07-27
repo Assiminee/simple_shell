@@ -57,7 +57,7 @@ char *find_path_to_file(char *fileName)
 	if (fileName == NULL)
 		return (NULL);
 	path_variable = _getenv("PATH");
-	portion = strtok(path_variable, ":");
+	portion = _strtok(path_variable, ":");
 	while (portion != NULL)
 	{
 		if (is_path(fileName))
@@ -84,7 +84,7 @@ char *find_path_to_file(char *fileName)
 			return (fullPath);
 		}
 		free(fullPath);
-		portion = strtok(NULL, ":");
+		portion = _strtok(NULL, ":");
 	}
 	free(path_variable);
 	return (NULL);
