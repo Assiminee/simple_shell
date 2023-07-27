@@ -12,7 +12,6 @@ void exit_bul(char **av, char **user_input)
 {
 	if (av == NULL || user_input == NULL)
 		return;
-
 	free_ptr(av);
 	free(*user_input);
 	exit(EXIT_SUCCESS);
