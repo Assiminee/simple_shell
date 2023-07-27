@@ -57,18 +57,18 @@ int num_elements(char *line)
  * Return: pointer to pointer to char
  */
 
-int tokenize(char ***args, char **line)
+int tokenize(char ***args)
 {
 	char *line_cpy, *portion;
 	int i = 0, len = 1024;
 
-	if (*line == NULL || args == NULL)
+	if (user_input == NULL || args == NULL)
 		return (-1);
-	line_cpy = _strdup(*line);
+	line_cpy = _strdup(user_input);
 	if (line_cpy == NULL)
 	{
 		perror("strdup");
-		free(*line);
+		free(user_input);
 		return (-1);
 	}
 	*args = malloc((num_elements(line_cpy) + 1) * sizeof(char *));
@@ -76,7 +76,7 @@ int tokenize(char ***args, char **line)
 	{
 		perror("malloc");
 		free(line_cpy);
-		free(*line);
+		free(user_input);
 		return (-1);
 	}
 	portion = _strtok(line_cpy, " \t\n");
@@ -88,7 +88,7 @@ int tokenize(char ***args, char **line)
 			perror("malloc");
 			free_ptr(*args);
 			free(line_cpy);
-			free(*line);
+			free(user_input);
 			return (-1);
 		}
 		_strcpy((*args)[i], portion);

@@ -8,7 +8,7 @@
  * Return: void
  */
 
-int check_existance(char **av, char **user_input)
+int check_existance(char **av)
 {
 	char *abs_path = find_path_to_file(av[0]);
 
@@ -16,8 +16,8 @@ int check_existance(char **av, char **user_input)
 	{
 		error_message(av[0], "command not found\n");
 		free_ptr(av);
-		free(*user_input);
-		*user_input = NULL;
+		free(user_input);
+		user_input = NULL;
 		return (-1);
 	}
 	if (_strcmp(av[0], abs_path) == 0)
@@ -75,14 +75,14 @@ int print_to_console(char *string)
  * Return: void
  */
 
-void remove_space(char **user_input)
+void remove_space()
 {
 	char *temp;
 
 	if (user_input == NULL)
 		return;
-	temp = *user_input;
+	temp = user_input;
 	while (*temp == ' ')
 		temp++;
-	_strcpy(*user_input, temp);
+	_strcpy(user_input, temp);
 }

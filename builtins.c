@@ -8,12 +8,12 @@
  * Return: void
  */
 
-void exit_bul(char **av, char **user_input)
+void exit_bul(char **av)
 {
 	if (av == NULL || user_input == NULL)
 		return;
 	free_ptr(av);
-	free(*user_input);
+	free(user_input);
 	exit(EXIT_SUCCESS);
 }
 
@@ -25,7 +25,7 @@ void exit_bul(char **av, char **user_input)
  * Return: void
  */
 
-void env_bul(__attribute__((unused)) char **av, char **user_input)
+void env_bul(__attribute__((unused)) char **av)
 {
 	int i;
 
@@ -38,8 +38,8 @@ void env_bul(__attribute__((unused)) char **av, char **user_input)
 			exit(EXIT_FAILURE);
 	}
 	free_ptr(av);
-	free(*user_input);
-	*user_input = NULL;
+	free(user_input);
+	user_input = NULL;
 }
 
 /**
@@ -50,7 +50,7 @@ void env_bul(__attribute__((unused)) char **av, char **user_input)
  * Return: int
  */
 
-int exe_builtins(char **av, char **user_input)
+int exe_builtins(char **av)
 {
 	int k;
 	builtins bi[] = {
@@ -65,7 +65,7 @@ int exe_builtins(char **av, char **user_input)
 	{
 		if (_strcmp(av[0], bi[k].func_name) == 0)
 		{
-			bi[k].f(av, user_input);
+			bi[k].f(av);
 			return (0);
 		}
 	}

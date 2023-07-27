@@ -1,5 +1,5 @@
 #include "shell.h"
-
+char *user_input = NULL;
 /**
  * main - executes user commands from terminal
  * @ac: number of arguments
@@ -13,8 +13,9 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 	size_t buff;
 	ssize_t characters;
 	pid_t pid;
-	char **av, *env[] = {NULL}, *user_input = NULL;
+	char **av, *env[] = {NULL};
 
+	signal(SIGINT, handleCtrlC);
 	while (true)
 	{
 		buff = 0;
@@ -32,10 +33,10 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 			continue;
 		}
 		user_input[characters - 1] = '\0';
-		if (pre_execution(&av, &user_input) == -1)
+		if (pre_execution(&av) == -1)
 			continue;
 		pid = fork();
-		fork_error(av, &user_input, pid);
+		fork_error(av, pid);
 		if (pid == 0)
 		{
 			execute_commands(av, env);
