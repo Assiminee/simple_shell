@@ -44,7 +44,7 @@ void env_bul(__attribute__((unused)) char **av, char **user_input)
 }
 
 /**
- * exe_vuiltins - ...
+ * exe_builtins - ...
  * @av: pointer to pointer to char
  * @user_input: pointer to pointer to char
  *
