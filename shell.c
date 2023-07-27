@@ -32,25 +32,13 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 			continue;
 		}
 		user_input[characters - 1] = '\0';
-		if (user_input[0] == ' ')
-			remove_space(&user_input);
-		if (_strcmp(user_input, "\n") == 0)
-		{
-			free(user_input);
-			user_input = NULL;
-			continue;
-		}
-		if (tokenize(&av, &user_input) == -1)
-			continue;
-		if (exe_builtins(av, &user_input) == 0)
-			continue;
-		if (check_existance(av, &user_input) == -1)
+		if (pre_execution(&av, &user_input) == -1)
 			continue;
 		pid = fork();
 		fork_error(av, &user_input, pid);
 		if (pid == 0)
 		{
-			execute_commands(av, env, &user_input);
+			execute_commands(av, env);
 			exit(EXIT_SUCCESS);
 		}
 		else
@@ -58,6 +46,38 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **argv)
 		free_ptr(av);
 		free(user_input);
 		user_input = NULL;
+	}
+	return (0);
+}
+
+int pre_execution(char ***av, char **user_input)
+{
+	if (av == NULL || user_input == NULL)
+		return (-1);
+
+	if (check_for_space(user_input) == -1)
+		return (-1);
+
+	if (tokenize(av, user_input) == -1)
+		return (-1);
+
+	if (exe_builtins(*av, user_input) == 0)
+		return (-1);
+
+	if (check_existance(*av, user_input) == -1)
+		return (-1);
+
+	return (0);
+}
+int check_for_space(char **user_input)
+{
+	if ((*user_input)[0] == ' ')
+		remove_space(user_input);
+	if (_strcmp(*user_input, "\n") == 0)
+	{
+		free(*user_input);
+		user_input = NULL;
+		return (-1);
 	}
 	return (0);
 }

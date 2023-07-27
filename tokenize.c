@@ -59,9 +59,8 @@ int num_elements(char *line)
 
 int tokenize(char ***args, char **line)
 {
-	char *line_cpy;
-	char *portion;
-	int i = 0, len;
+	char *line_cpy, *portion;
+	int i = 0, len = 1024;
 
 	if (*line == NULL || args == NULL)
 		return (-1);
@@ -83,10 +82,6 @@ int tokenize(char ***args, char **line)
 	portion = _strtok(line_cpy, " \t\n");
 	while (portion != NULL)
 	{
-		if (i == 0)
-			len = 1024;
-		else
-			len = _strlen(portion) + 1;
 		(*args)[i] = malloc(len + 1);
 		if ((*args)[i] == NULL)
 		{
@@ -99,6 +94,7 @@ int tokenize(char ***args, char **line)
 		_strcpy((*args)[i], portion);
 		portion = _strtok(NULL, " \t\n");
 		i++;
+		len = _strlen(portion) + 1;
 	}
 	(*args)[i] = NULL;
 	free(line_cpy);

@@ -39,7 +39,7 @@ int check_existance(char **av, char **user_input)
  * Return: void
  */
 
-void execute_commands(char **av, char *env[], __attribute__((unused))char **user_input)
+void execute_commands(char **av, char *env[])
 {
 	int exe;
 

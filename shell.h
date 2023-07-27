@@ -41,7 +41,7 @@ char *_strcat(char *dest, const char *src);
 char *_strchr(char *p, const char ch);
 char *_strtok(char *str, const char *delim);
 int _strncmp(const char *s1, const char *s2, size_t n);
-void execute_commands(char **av, char *env[], char **user_input);
+void execute_commands(char **av, char *env[]);
 int check_existance(char **av, char **user_input);
 char *extract_command(char *path);
 int contains_char(char *string, char character);
@@ -53,5 +53,7 @@ void prompt(void);
 void fork_error(char **av, char **user_input, pid_t pid);
 void env_bul(char **av, char **user_input);
 int exe_builtins(char **av, char **user_input);
+int check_for_space(char **user_input);
+int pre_execution(char ***av, char **user_input);
 
 #endif
