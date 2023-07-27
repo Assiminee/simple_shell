@@ -75,7 +75,7 @@ int print_to_console(char *string)
  * Return: void
  */
 
-void remove_space()
+void remove_space(void)
 {
 	char *temp;
 

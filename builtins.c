@@ -27,7 +27,8 @@ void exit_bul(char **av, int status)
  * Return: void
  */
 
-void env_bul(__attribute__((unused)) char **av, __attribute__((unused)) int status)
+void env_bul(__attribute__((unused)) char **av,
+		__attribute__((unused)) int status)
 {
 	int i;
 

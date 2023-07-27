@@ -49,12 +49,12 @@ int contains_char(char *string, char character);
 void exit_bul(char **av, int status);
 int _strcmp(const char *s1, const char *s2);
 int print_to_console(char *string);
-void remove_space();
+void remove_space(void);
 void prompt(void);
 void fork_error(char **av, pid_t pid);
 void env_bul(char **av, int status);
 int exe_builtins(char **av, int status);
-int check_for_space();
+int check_for_space(void);
 int pre_execution(char ***av, int status);
 void handleCtrlC(int signal);
 

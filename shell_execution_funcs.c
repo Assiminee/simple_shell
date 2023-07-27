@@ -35,7 +35,7 @@ int pre_execution(char ***av, int status)
  * Return: 0 or -1
  */
 
-int check_for_space()
+int check_for_space(void)
 {
 	if (user_input[0] == ' ')
 		remove_space();
