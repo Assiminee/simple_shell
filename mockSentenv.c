@@ -67,6 +67,9 @@ int _setenv(char **av)
 	{
 		if (_strncmp(av[1], env_vars[i], _strlen(av[1])) == 0)
 		{
+			free(env_vars[i]);
+			env_vars[i] = malloc(_strlen(new_entry) + 1);
+			_strcpy(env_vars[i], new_entry);
 			free_ptr(av);
 			free(user_input);
 			free(new_entry);
