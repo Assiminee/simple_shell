@@ -109,29 +109,30 @@ int tokenize(char ***args)
  * Return: void
  */
 
-void error_message(char *command, char *message)
+void error_message(char *command, char *shell_name)
 {
-	char *error_message = NULL;
+	char *error_message;
 
-	if (message == NULL ||
-	_strlen(message) == 0 ||
+	if (shell_name == NULL ||
+	_strlen(shell_name) == 0 ||
 	command == NULL ||
 	_strlen(command) == 0)
 	{
 		free_ptr(env_vars);
 		exit(EXIT_FAILURE);
 	}
-	error_message = malloc(_strlen(command) + _strlen(message) + 3);
+	error_message = malloc(_strlen(shell_name) + _strlen(command) + 18);
 	if (error_message == NULL)
 	{
 		perror("malloc");
 		free_ptr(env_vars);
 		exit(EXIT_FAILURE);
 	}
-	_strcpy(error_message, command);
-	_strcat(error_message, ": ");
-	_strcat(error_message, message);
-	if (print_to_console(error_message) < 0)
+	_strcpy(error_message, shell_name);
+	_strcat(error_message, ": 1: ");
+	_strcat(error_message, command);
+	_strcat(error_message, ": not found\n");
+	if (write(2, error_message, _strlen(error_message)) < 0)
 	{
 		free(error_message);
 		free_ptr(env_vars);

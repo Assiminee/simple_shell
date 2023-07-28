@@ -22,7 +22,7 @@ int pre_execution(char ***av, int status, char *shell_name)
 	if (exe_builtins(*av, status, shell_name) == 0)
 		return (-1);
 
-	if (check_existance(*av) == -1)
+	if (check_existance(*av, shell_name) == -1)
 		return (-1);
 
 	return (0);

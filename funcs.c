@@ -8,14 +8,14 @@
  * Return: void
  */
 
-int check_existance(char **av)
+int check_existance(char **av, char *shell_name)
 {
 	char *abs_path = find_path_to_file(av[0]);
 	DIR *dir;
 
 	if (abs_path == NULL)
 	{
-		error_message(av[0], "command not found\n");
+		error_message(av[0], shell_name);
 		free_ptr(av);
 		free(user_input);
 		user_input = NULL;
