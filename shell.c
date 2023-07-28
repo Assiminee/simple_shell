@@ -14,7 +14,7 @@ int main(__attribute__((unused))int ac, char **argv)
 	size_t buff;
 	ssize_t characters;
 	pid_t pid;
-	char **av, *env[] = {NULL}, *shell_name = argv[0];
+	char **av, *shell_name = argv[0];
 	int status = 0;
 
 	signal(SIGINT, handleCtrlC);
@@ -22,6 +22,7 @@ int main(__attribute__((unused))int ac, char **argv)
 		return (-1);
 	while (true)
 	{
+		_setenv("LC_COLLATE", "en_US.UTF-8");
 		buff = 0;
 		prompt();
 		characters = getline(&user_input, &buff, stdin);
@@ -44,7 +45,7 @@ int main(__attribute__((unused))int ac, char **argv)
 		fork_error(av, pid);
 		if (pid == 0)
 		{
-			execute_commands(av, env);
+			execute_commands(av, env_vars);
 			exit(EXIT_SUCCESS);
 		}
 		else
