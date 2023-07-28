@@ -33,6 +33,10 @@ int check_existance(char **av, char *shell_name)
 		dir = opendir(av[1]);
 		if (dir == NULL)
 		{
+			write(2, av[0], _strlen(av[0]));
+			write(2, ": cannot access '", 17);
+			write(2, av[1], _strlen(av[1]));
+			write(2, "': No such file or directory\n", 29);	
 			free_ptr(av);
 			free(user_input);
 			return (-1);
