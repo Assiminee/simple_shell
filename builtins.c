@@ -103,7 +103,8 @@ int exe_builtins(char **av, int status, char *shell_name)
 	}
 	if (_strcmp(av[0], "setenv") == 0)
 	{
-		return (_setenv(av));
+		k = _setenv(av);
+		return (0);
 	}
 	return (-1);
 }
