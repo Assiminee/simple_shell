@@ -148,7 +148,8 @@ int exe_builtins(char **av, int status, char *shell_name)
 	}
 	if (_strcmp(av[0], "setenv") == 0)
 	{
-		_setenv(av[1], av[2]);
+		if (av[1] != NULL)
+			_setenv(av[1], av[2]);
 		free_ptr(av);
 		free(user_input);
 		return (0);
