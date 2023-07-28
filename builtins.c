@@ -77,14 +77,30 @@ void env_bul(__attribute__((unused)) char **av,
 void _cd(char *path, char *shell_name)
 {
 	int status;
-	char *buff, *home;
+	char *buff, *wd, *owd;
 
 	if (path == NULL || _strlen(path) == 0)
 	{
-		home = _getenv("HOME");
-		chdir(home);
-		_setenv("PWD", home);
-		free(home);
+		buff = malloc(256);
+		_setenv("OLDPWD", getcwd(buff, 256));
+		wd = _getenv("HOME");
+		chdir(wd);
+		_setenv("PWD", wd);
+		free(wd);
+		free(buff);
+		return;
+	}
+	if (_strcmp(path, "-") == 0)
+	{
+		owd = _getenv("OLDPWD");
+		buff = malloc(256);
+		_setenv("OLDPWD", getcwd(buff, 256));
+		chdir(owd);
+		print_to_console(owd);
+		write(STDOUT_FILENO, "\n", 1);
+		_setenv("PWD", owd);
+		free(owd);
+		free(buff);
 		return;
 	}
 	status = chdir(path);
