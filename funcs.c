@@ -42,6 +42,7 @@ int check_existance(char **av, char *shell_name, int *status)
 			free(user_input);
 			return (-1);
 		}
+		*status = 0;
 		free(dir);
 	}
 	return (0);
