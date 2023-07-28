@@ -57,17 +57,17 @@ char *find_path_to_file(char *fileName)
 	if (fileName == NULL)
 		return (NULL);
 	path_variable = _getenv("PATH");
+	if (is_path(fileName))
+	{
+		if (stat(fileName, &st) == 0)
+		{
+			free(path_variable);
+			return (fileName);
+		}
+	}
 	portion = _strtok(path_variable, ":");
 	while (portion != NULL)
 	{
-		if (is_path(fileName))
-		{
-			if (stat(fileName, &st) == 0)
-			{
-				free(path_variable);
-				return (fileName);
-			}
-		}
 		fullPath = malloc((_strlen(portion) + _strlen(fileName)) + 2);
 		if (fullPath == NULL)
 		{
