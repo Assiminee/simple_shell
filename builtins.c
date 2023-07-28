@@ -75,6 +75,14 @@ void env_bul(__attribute__((unused)) char **av,
 	user_input = NULL;
 }
 
+/**
+ * _cd - changes directory
+ * @path: pointer to char
+ * @shell_name: pointer to char
+ *
+ * Retun: void
+ */
+
 void _cd(char *path, char *shell_name)
 {
 	int status;

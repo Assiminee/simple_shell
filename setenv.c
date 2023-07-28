@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * check_var - ...
+ * @check_var: ...
+ *
+ * Return: bool
+ */
+
 bool check_var(const char *name)
 {
 	int i;
@@ -22,6 +29,14 @@ bool check_var(const char *name)
 	return (true);
 }
 
+/**
+ * create_entry - ...
+ * @name: ...
+ * @value: ...
+ *
+ * Return: pointer to char
+ */
+
 char *create_entry(const char *name, const char *value)
 {
 	char *new_entry;
@@ -41,6 +56,14 @@ char *create_entry(const char *name, const char *value)
 	_strcat(new_entry, value);
 	return (new_entry);
 }
+
+/**
+ * _sentenv - ...
+ * @name: ...
+ * @value: ...
+ *
+ * Return: int
+ */
 
 int _setenv(char *name, char *value)
 {
@@ -76,6 +99,13 @@ int _setenv(char *name, char *value)
 	free(new_entry);
 	return (0);
 }
+
+/**
+ * _unsetenv - ...
+ * @av: ...
+ *
+ * Return: int
+ */
 
 int _unsetenv(char **av)
 {

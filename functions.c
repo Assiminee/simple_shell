@@ -47,6 +47,7 @@ int is_path(char *string)
  *
  * Return: full path of file
  */
+
 char *find_path_to_file(char *fileName)
 {
 	struct stat st;

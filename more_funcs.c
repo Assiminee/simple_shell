@@ -17,6 +17,7 @@ void prompt(void)
 		}
 	}
 }
+
 /**
  * fork_error - deals with a fork error
  * @av: pointer to pointer to char
