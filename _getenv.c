@@ -46,15 +46,15 @@ char *_getenv(const char *name)
 	int i;
 	char *value;
 
-	if (name == NULL || environ == NULL)
+	if (name == NULL || env_vars == NULL)
 		return (NULL);
 	i = 0;
-	while (environ[i] != NULL)
+	while (env_vars[i] != NULL)
 	{
-		if (_strncmp(name, environ[i], strlen(name)) == 0)
+		if (_strncmp(name, env_vars[i], strlen(name)) == 0)
 			break;
 		i++;
 	}
-	value = return_value(environ[i]);
+	value = return_value(env_vars[i]);
 	return (value);
 }

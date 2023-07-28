@@ -15,6 +15,7 @@
 
 extern char **environ;
 extern char *user_input;
+extern char **env_vars;
 /**
  * struct builtins - struct builtins
  * @func_name: pointer to char
@@ -60,6 +61,11 @@ void handleCtrlC(int signal);
 int _atoi(char *s);
 int valid_exit_arg(char *arg);
 int exit_status(char *arg);
+int env_cpy(void);
+int num_env_vars(void);
 
-
+/* setenv */
+bool check_var(const char *name);
+char *create_entry(const char *name, const char *value);
+int _setenv(char **av);
 #endif

@@ -1,5 +1,6 @@
 #include "shell.h"
 char *user_input = NULL;
+char **env_vars = NULL;
 /**
  * main - executes user commands from terminal
  * @ac: number of arguments
@@ -17,6 +18,8 @@ int main(__attribute__((unused))int ac, char **argv)
 	int status = 0;
 
 	signal(SIGINT, handleCtrlC);
+	if (env_cpy() == -1)
+		return (-1);
 	while (true)
 	{
 		buff = 0;
@@ -26,6 +29,7 @@ int main(__attribute__((unused))int ac, char **argv)
 		{
 			if (characters == EOF)
 			{
+				free_ptr(env_vars);
 				free(user_input);
 				break;
 			}

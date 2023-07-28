@@ -117,11 +117,15 @@ void error_message(char *command, char *message)
 	_strlen(message) == 0 ||
 	command == NULL ||
 	_strlen(command) == 0)
+	{
+		free_ptr(env_vars);
 		exit(EXIT_FAILURE);
+	}
 	error_message = malloc(_strlen(command) + _strlen(message) + 3);
 	if (error_message == NULL)
 	{
 		perror("malloc");
+		free_ptr(env_vars);
 		exit(EXIT_FAILURE);
 	}
 	_strcpy(error_message, command);
@@ -130,6 +134,7 @@ void error_message(char *command, char *message)
 	if (print_to_console(error_message) < 0)
 	{
 		free(error_message);
+		free_ptr(env_vars);
 		exit(EXIT_FAILURE);
 	}
 	free(error_message);

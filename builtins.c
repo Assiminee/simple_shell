@@ -28,17 +28,20 @@ void exit_bul(char **av, int status, char *shell_name)
 			free(error_msg);
 			free_ptr(av);
 			free(user_input);
+			free_ptr(env_vars);
 			exit(2);
 		}
 		else
 		{
 			free_ptr(av);
 			free(user_input);
+			free_ptr(env_vars);
 			exit(stat);
 		}
 	}
 	free_ptr(av);
 	free(user_input);
+	free_ptr(env_vars);
 	if (status != 0)
 		exit(2);
 	exit(EXIT_SUCCESS);
@@ -61,9 +64,9 @@ void env_bul(__attribute__((unused)) char **av,
 	if (av == NULL || user_input == NULL)
 		return;
 
-	for (i = 0; environ[i] != NULL; i++)
+	for (i = 0; env_vars[i] != NULL; i++)
 	{
-		if (print_to_console(environ[i]) < 0 || print_to_console("\n") < 0)
+		if (print_to_console(env_vars[i]) < 0 || print_to_console("\n") < 0)
 			exit(EXIT_FAILURE);
 	}
 	free_ptr(av);
@@ -97,6 +100,10 @@ int exe_builtins(char **av, int status, char *shell_name)
 			bi[k].f(av, status, shell_name);
 			return (0);
 		}
+	}
+	if (_strcmp(av[0], "setenv") == 0)
+	{
+		return (_setenv(av));
 	}
 	return (-1);
 }

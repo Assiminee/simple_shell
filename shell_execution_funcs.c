@@ -57,6 +57,7 @@ int check_for_space(void)
 
 void handleCtrlC(int signal)
 {
+	free_ptr(env_vars);
 	free(user_input);
 	exit(signal);
 }
