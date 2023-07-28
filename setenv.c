@@ -29,6 +29,14 @@ bool check_var(const char *name)
 	return (true);
 }
 
+/**
+ * create_entry - ...
+ * @name: ...
+ * @value: ...
+ *
+ * Return: pointer to char
+ */
+
 char *create_entry(const char *name, const char *value)
 {
 	char *new_entry;
