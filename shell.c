@@ -38,7 +38,7 @@ int main(__attribute__((unused))int ac, char **argv)
 			continue;
 		}
 		user_input[characters - 1] = '\0';
-		if (pre_execution(&av, status, shell_name) == -1)
+		if (pre_execution(&av, &status, shell_name) == -1)
 			continue;
 		pid = fork();
 		fork_error(av, pid);

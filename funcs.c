@@ -8,7 +8,7 @@
  * Return: void
  */
 
-int check_existance(char **av, char *shell_name)
+int check_existance(char **av, char *shell_name, int *status)
 {
 	char *abs_path = find_path_to_file(av[0]);
 	DIR *dir;
@@ -36,7 +36,8 @@ int check_existance(char **av, char *shell_name)
 			write(2, av[0], _strlen(av[0]));
 			write(2, ": cannot access '", 17);
 			write(2, av[1], _strlen(av[1]));
-			write(2, "': No such file or directory\n", 29);	
+			write(2, "': No such file or directory\n", 29);
+			*status = 2;
 			free_ptr(av);
 			free(user_input);
 			return (-1);
