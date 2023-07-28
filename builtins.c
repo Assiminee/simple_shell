@@ -12,6 +12,7 @@ void exit_bul(char **av, int status, char *shell_name)
 {
 	int stat;
 	char *error_msg;
+
 	if (av == NULL || user_input == NULL)
 		return;
 	if (av[1] != NULL)
