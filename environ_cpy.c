@@ -15,6 +15,12 @@ int num_env_vars(void)
 	return (i);
 }
 
+/**
+ * env_cpy - ...
+ *
+ * Return: int
+ */
+
 int env_cpy(void)
 {
 	int i;
