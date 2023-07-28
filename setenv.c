@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * check_var - ...
+ * @check_var: ...
+ *
+ * Return: bool
+ */
+
 bool check_var(const char *name)
 {
 	int i;
