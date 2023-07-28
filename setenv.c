@@ -90,3 +90,48 @@ int _setenv(char **av)
 	free(user_input);
 	return (0);
 }
+
+int _unsetenv(char **av)
+{
+	int i;
+	bool found = false;
+
+	if (av == NULL || av[1] == NULL || _strlen(av[1]) == 0)
+	{
+		free_ptr(av);
+		free(user_input);
+		return (-1);
+	}
+	for (i = 0; env_vars[i] != NULL; i++)
+	{
+		if (_strncmp(av[1], env_vars[i], _strlen(av[1])) == 0)
+		{
+			found = true;
+			break;
+		}
+	}
+	if (found)
+	{
+		free(env_vars[i]);
+		for (; i < elements(env_vars) - 1; i++)
+		{
+			env_vars[i] = malloc(_strlen(env_vars[i + 1]) + 1);
+			if (env_vars[i] == NULL)
+			{
+				free_ptr(env_vars);
+				env_vars = NULL;
+				env_cpy();
+				free_ptr(av);
+				free(user_input);
+				return (-1);
+			}
+			_strcpy(env_vars[i], env_vars[i + 1]);
+			free(env_vars[i + 1]);
+		}
+		env_vars[i] = NULL;
+	}
+	free_ptr(av);
+	free(user_input);
+	return (0);
+}
+			

@@ -68,4 +68,7 @@ int num_env_vars(void);
 bool check_var(const char *name);
 char *create_entry(const char *name, const char *value);
 int _setenv(char **av);
+
+/* unsetenv */
+int _unsetenv(char **av);
 #endif
