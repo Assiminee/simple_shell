@@ -74,6 +74,34 @@ void env_bul(__attribute__((unused)) char **av,
 	user_input = NULL;
 }
 
+void _cd(char *path, char *shell_name)
+{
+	int status;
+	char *buff, *home;
+
+	if (path == NULL || _strlen(path) == 0)
+	{
+		home = _getenv("HOME");
+		chdir(home);
+		_setenv("PWD", home);
+		free(home);
+		return;
+	}
+	status = chdir(path);
+	if (status == -1)
+	{
+		write(2, shell_name, _strlen(shell_name));
+		write(2, ": 1: cd: can't cd to ", 21);
+		write(2, path, _strlen(path));
+		write(2, "\n", 1);
+		return;
+	}
+	buff = malloc(256);
+	_setenv("PWD", getcwd(buff, 256));
+	free(buff);
+}
+
+
 /**
  * exe_builtins - executes builtins
  * @av: pointer to pointer to char
@@ -103,12 +131,21 @@ int exe_builtins(char **av, int status, char *shell_name)
 	}
 	if (_strcmp(av[0], "setenv") == 0)
 	{
-		_setenv(av);
+		_setenv(av[1], av[2]);
+		free_ptr(av);
+		free(user_input);
 		return (0);
 	}
 	if (_strcmp(av[0], "unsetenv") == 0)
 	{
 		_unsetenv(av);
+		return (0);
+	}
+	if (_strcmp(av[0], "cd") == 0)
+	{
+		_cd(av[1], shell_name);
+		free_ptr(av);
+		free(user_input);
 		return (0);
 	}
 	return (-1);

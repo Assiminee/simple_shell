@@ -69,8 +69,11 @@ int num_env_vars(void);
 /* setenv */
 bool check_var(const char *name);
 char *create_entry(const char *name, const char *value);
-int _setenv(char **av);
+int _setenv(char *name, char *value);
 
 /* unsetenv */
 int _unsetenv(char **av);
+
+/* cd */
+void _cd(char *path, char *shell_name);
 #endif
