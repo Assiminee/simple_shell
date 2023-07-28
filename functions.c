@@ -63,6 +63,8 @@ char *find_path_to_file(char *fileName)
 			return (fileName);
 	}
 	path_variable = _getenv("PATH");
+	if (path_variable == NULL)
+		return (NULL);
 	portion = _strtok(path_variable, ":");
 	while (portion != NULL)
 	{
