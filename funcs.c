@@ -11,6 +11,7 @@
 int check_existance(char **av)
 {
 	char *abs_path = find_path_to_file(av[0]);
+	DIR *dir;
 
 	if (abs_path == NULL)
 	{
@@ -26,6 +27,17 @@ int check_existance(char **av)
 	{
 		_strcpy(av[0], abs_path);
 		free(abs_path);
+	}
+	if (av[1] != NULL && _strlen(av[1]) != 0 && is_path(av[1]))
+	{
+		dir = opendir(av[1]);
+		if (dir == NULL)
+		{
+			free_ptr(av);
+			free(user_input);
+			return (-1);
+		}
+		free(dir);
 	}
 	return (0);
 }

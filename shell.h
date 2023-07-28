@@ -12,6 +12,8 @@
 #include <ctype.h>
 #include <string.h>
 #include <stddef.h>
+#include <sys/types.h>
+#include <dirent.h>
 
 extern char **environ;
 extern char *user_input;
