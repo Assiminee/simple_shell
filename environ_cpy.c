@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * num_rnv_vars - ...
+ * 
+ * Return: int
+ */
+
 int num_env_vars(void)
 {
 	int i;
