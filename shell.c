@@ -22,7 +22,6 @@ int main(__attribute__((unused))int ac, char **argv)
 		return (-1);
 	while (true)
 	{
-		_setenv("LC_COLLATE", "en_US.UTF-8");
 		buff = 0;
 		prompt();
 		characters = getline(&user_input, &buff, stdin);
