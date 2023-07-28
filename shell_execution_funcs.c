@@ -84,6 +84,13 @@ int valid_exit_arg(char *arg)
 	return (0);
 }
 
+/**
+ * exit_status - checks the exit status
+ * @arg: pointer to char
+ *
+ * Return: int
+ */
+
 int exit_status(char *arg)
 {
 	if (arg == NULL)
