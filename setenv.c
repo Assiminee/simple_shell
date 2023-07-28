@@ -57,6 +57,14 @@ char *create_entry(const char *name, const char *value)
 	return (new_entry);
 }
 
+/**
+ * _sentenv - ...
+ * @name: ...
+ * @value: ...
+ *
+ * Return: int
+ */
+
 int _setenv(char *name, char *value)
 {
 	int i;
