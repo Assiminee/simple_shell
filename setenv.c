@@ -100,6 +100,13 @@ int _setenv(char *name, char *value)
 	return (0);
 }
 
+/**
+ * _unsetenv - ...
+ * @av: ...
+ *
+ * Return: int
+ */
+
 int _unsetenv(char **av)
 {
 	int i;
