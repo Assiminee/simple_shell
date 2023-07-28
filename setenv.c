@@ -7,7 +7,7 @@ bool check_var(const char *name)
 	if (name == NULL)
 		return (false);
 	i = 0;
-		
+
 	if (name[i] >= '0' && name[i] <= '9')
 		return (false);
 	while (name[i] != '\0')
@@ -21,7 +21,7 @@ bool check_var(const char *name)
 	}
 	return (true);
 }
-			
+
 char *create_entry(const char *name, const char *value)
 {
 	char *new_entry;
@@ -48,14 +48,12 @@ int _setenv(char **av)
 	char *new_entry;
 
 	if (av == NULL || av[1] == NULL ||
-	av[2] == NULL || _strlen(av[1]) == 0 ||
-	_strlen(av[2]) == 0)
+	av[2] == NULL || _strlen(av[1]) == 0 || _strlen(av[2]) == 0)
 	{
 		free_ptr(av);
 		free(user_input);
 		return (-1);
 	}
-
 	new_entry = create_entry(av[1], av[2]);
 	if (new_entry == NULL)
 	{
@@ -86,7 +84,7 @@ int _setenv(char **av)
 		return (-1);
 	}
 	_strcpy(env_vars[i], new_entry);
-        env_vars[i + 1] = NULL;
+	env_vars[i + 1] = NULL;
 	free(new_entry);
 	free_ptr(av);
 	free(user_input);
