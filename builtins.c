@@ -86,13 +86,26 @@ void env_bul(__attribute__((unused)) char **av,
 void _cd(char *path, char *shell_name)
 {
 	int status;
-	char *buff, *wd, *owd;
+	char *buff, *wd, *owd, *user;
 
 	if (path == NULL || _strlen(path) == 0)
 	{
 		buff = malloc(256);
 		_setenv("OLDPWD", getcwd(buff, 256));
 		wd = _getenv("HOME");
+		if (wd == NULL)
+		{
+			user = _getenv("LOGNAME");
+			owd = malloc(7 + _strlen(user));
+			_strcpy(owd, "/home/");
+			_strcat(owd, user);
+			chdir(owd);
+			_setenv("PWD", owd);
+			free(buff);
+			free(user);
+			free(owd);
+			return;
+		}	
 		chdir(wd);
 		_setenv("PWD", wd);
 		free(wd);
@@ -112,6 +125,8 @@ void _cd(char *path, char *shell_name)
 		free(buff);
 		return;
 	}
+	buff = malloc(256);
+	_setenv("OLDPWD", getcwd(buff, 256));
 	status = chdir(path);
 	if (status == -1)
 	{
@@ -119,8 +134,11 @@ void _cd(char *path, char *shell_name)
 		write(2, ": 1: cd: can't cd to ", 21);
 		write(2, path, _strlen(path));
 		write(2, "\n", 1);
+		free(buff);
 		return;
 	}
+	free(buff);
+	buff = NULL;
 	buff = malloc(256);
 	_setenv("PWD", getcwd(buff, 256));
 	free(buff);
