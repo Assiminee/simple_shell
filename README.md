@@ -37,4 +37,4 @@ The simple_shell is a basic recreation of the sh shell, written in C. It's desig
 
 ### Usage
 
-+ To utilize the simple_shell, compile the source files using '''gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh''' and execute the resulting binary. The shell will then prompt you for commands, allowing for an interactive session.
++ To utilize the simple_shell, compile the source files using "gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh" and execute the resulting binary. The shell will then prompt you for commands, allowing for an interactive session.
